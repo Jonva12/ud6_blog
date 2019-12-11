@@ -11,6 +11,6 @@ class BlogController extends Controller
     public function index(){
     	$posts = Post::latest('published_at')->get();
     	$categorias = Category::all();
-    	return view('posts.index', array('posts'=>$posts), array('categorias'=>$categorias));
+    	return view('welcome', compact('posts','categorias'));
     }
 }
