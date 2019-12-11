@@ -64,6 +64,3 @@
   </div>
   <!-- /.container -->
   @endsection
-</body>
-
-</html>

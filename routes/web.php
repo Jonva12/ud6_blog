@@ -19,9 +19,4 @@ Route::get('/', 'BlogController@index')->name('welcome');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::post('/posts', 'BlogController@store')->name('posts.store');
-Route::get('/posts/create', 'BlogController@create')->name('posts.create');
-Route::get('/posts/{id}/edit', 'BlogController@edit')->name('posts.edit');
-Route::get('/posts/{id}', 'BlogController@show')->name('posts.show');
-Route::put('/posts/{id}', 'BlogController@update')->name('posts.update');
-Route::get('/posts/{id}', 'BlogController@destroy')->name('posts.destroy');
+Route::resource('post', 'postController')->only(['index','create','store','show','edit','update','destroy']);
