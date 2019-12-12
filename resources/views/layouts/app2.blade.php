@@ -11,6 +11,7 @@
   <title>Blog Post  - Start Bootstrap Template</title>
 
   <!-- Bootstrap core CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
   <link href="/css/bootstrap.min.css" rel="stylesheet">
   <!-- Custom styles for this template -->
   <link href="/css/blog-post.css" rel="stylesheet">

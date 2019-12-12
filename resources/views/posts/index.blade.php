@@ -25,7 +25,7 @@
         <td>{{$p->title}}</td>
         <td>{{date("j/m/Y H:i:s", strtotime($p->published_at))}}</td>
         <td>
-        <a title="Ver" href=""><i class="fa fa-eye" style="color:black"></i></a>
+        <a title="Ver" href="{{route('post.show', $p->id)}}"><i class="fa fa-eye" style="color:black"></i></a>
         </td>
         <td>
           <a title="Editar" href=""><i class="fa fa-pencil" style="color:black"></i></a>
