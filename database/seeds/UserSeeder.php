@@ -16,14 +16,14 @@ class UserSeeder extends Seeder
         	'name' => 'admin',
         	'email' => 'admin@example.com',
             'password' => bcrypt('secret'),
-            'rol' => 1
+            'rol' => "admin"
         ]);
         
         $user = User::create([
         	'name' => 'editor',
         	'email' => 'editor@example.com',
             'password' => bcrypt('secret'),
-            'rol' => 2
+            'rol' => "editor"
     	]);
         
     }
