@@ -11,7 +11,7 @@
     Image: <input type="file" name="imagen"><br>
     Category: <select name="category">
       @foreach($categorias as $c)
-      <option value="{{$c->id}}">{{$c->id}}</option>
+      <option value="{{$c->id}}">{{$c->name}}</option>
       @endforeach
     </select><br>
     <button type="submit">Crear Post</button>

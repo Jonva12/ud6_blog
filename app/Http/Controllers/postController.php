@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Post;
 use App\Category;
 use Auth;
+Use \Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class postController extends Controller
@@ -16,8 +17,9 @@ class postController extends Controller
      */
     public function index()
     {
-        $posts = Post::where('user_id', Auth::user()->id)->get();
-        return view('posts.index', array('posts'=>$posts));
+        $user = Auth::user();
+        $posts = Post::where('user_id', $user->id)->get();
+        return view('posts.index', compact('posts'));
     }
 
     /**
@@ -55,14 +57,16 @@ class postController extends Controller
         $data->title= $request->input('title');
         $data->excerpt= $request->input('excerpt');
         $data->body= $request->input('body');
-        $data->image = $request->file('img');
+        $data->image = $request->input('imagen');
+        //para que introduzca el published at
+        $time = Carbon::now()->setTimezone('Europe/Madrid');
+        $data->published_at = $time->toDateTimeString();
         $data->category_id = $request->get('category');
         $data->user_id = Auth::user()->id;
 
         $data->save();
 
-        $posts = Post::where('user_id', Auth::user()->id)->get();
-        return redirect(route('post.index', array('posts'=>$posts)));
+        return redirect(route('post.index'));
     }
 
     /**
@@ -71,9 +75,11 @@ class postController extends Controller
      * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function show(Post $post)
+    public function show($id)
     {
-        //
+        $post = Post::find($id);
+        $this->authorize('view', $post);
+        return view('posts.show', compact('post'));
     }
 
     /**
@@ -82,9 +88,11 @@ class postController extends Controller
      * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function edit(Post $post)
+    public function edit($id)
     {
-        //
+        $categorias = Category::all();
+        $post = Post::find($id);
+        return view('posts.update')->with(['categorias' => $categorias, 'post' => $post]);
     }
 
     /**
@@ -94,9 +102,25 @@ class postController extends Controller
      * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post)
+    public function update(Request $request, $id)
     {
-        //
+        $data = Post::find($id);
+
+        //pillar los datos del input
+
+        $data->title= $request->input('title');
+        $data->excerpt= $request->input('excerpt');
+        $data->body= $request->input('body');
+        $data->image = $request->input('imagen');
+        //para que introduzca el published at
+        $time = Carbon::now()->setTimezone('Europe/Madrid');
+        $data->published_at = $time->toDateTimeString();
+        $data->category_id = $request->get('category');
+        $data->user_id = Auth::user()->id;
+
+        $data->save();
+
+        return redirect(route('post.index'));
     }
 
     /**
@@ -105,8 +129,10 @@ class postController extends Controller
      * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Post $post)
+    public function destroy($id)
     {
-        //
+        $post = Post::find($id);
+        $post->delete();
+        return redirect(route('post.index'));
     }
 }

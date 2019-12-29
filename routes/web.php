@@ -18,8 +18,8 @@ Auth::routes();
 Route::get('/', 'BlogController@index')->name('welcome');
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/editor', 'EditorController@index')->name('editor');
+Route::get('/admin', 'AdminController@index')->name('admin');
 
 Route::resource('post', 'postController')->only(['index','create','store','show','edit','update','destroy']);
 
-Route::get('/editor', 'EditorController@index')->name('editor');
-Route::get('/admin', 'AdminController@index')->name('admin');
