@@ -53,12 +53,11 @@
       </div>
     </div>
   </nav>
-
   @yield('content')
   <!-- Footer -->
-  <footer class="py-5 bg-dark">
+  <footer class="py-5 bg-success">
     <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy; Desarrollo web en entorno servidor 2020</p>
+        <p class="m-0 text-center text-black">Copyright &copy; Desarrollo web en entorno servidor 2020</p>
     </div>
   </footer>
 

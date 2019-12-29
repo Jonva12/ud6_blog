@@ -42,8 +42,7 @@
       </tr>
       @endforeach
     </tbody>
-    </table>
-  </div>
+  </table>
+</div>
   <!-- /.container -->
-
-  @endsection
+@endsection
